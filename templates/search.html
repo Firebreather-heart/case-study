@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+    <h2>Search Results</h2>
+    <p class="w3-large">
+        {% with results.count as total_results %}
+        Found {{ total_results }} result{{ total_results|pluralize }}
+        {% endwith %}
+    </p>
+    {% for news in search_results %}
+        <div class="w3-card w3-hover-yellow w3-margin w3-padding" style="border: 1px solid rgb(7, 7, 47);">
+            {% if news.url %}
+                <a href="{{news.url}}">
+            {% endif %}
+                    <p>{{news.title}}</p>
+                    <small>Written by {{news.author}} </small>
+                    <p>{{news.type}}</p>
+                </a>
+            {% empty %}
+            <p>No results found</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

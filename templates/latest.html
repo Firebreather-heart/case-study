@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+    {% for news in latest %}
+    <div class="w3-card w3-hover-pale-yellow w3-padding w3-margin" style="border: 1px solid rgb(7, 7, 47);">
+        {% if news.url %}
+        <a href="{{news.url}}">
+            {% endif %}
+            <p>{{news.title}}</p>
+            <small>Written by {{news.author}} </small>
+            <p>{{news.type}}</p>
+        </a>
+
+    </div>
+    {% endfor %}
+</div>
+<style>
+    a {
+        text-decoration: none;
+    }
+</style>
+{% endblock content %}

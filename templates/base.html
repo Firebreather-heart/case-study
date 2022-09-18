@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load blog_tags %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modNews</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="w3-bar w3-mobile " style="background-color: rgb(7, 7, 47);color:white;position:fixed;z-index: 9;">
+        <a href="{% url 'home' %}" class="w3-bar-item w3-margin w3-hover-yellow w3-border"
+            style="border: .1px solid yellow ;"> modNews </a>
+        <a href="{% url 'latest' %}" class="w3-border w3-margin-top w3-bar-item w3-hover-yellow"
+            style="border: .1px solid yellow ;"> Latest</a>
+        <form action="{% url 'search' %}" class="w3-bar-item w3-margin-top w3-margin-top">
+            <input type="text" name="query" placeholder="quick search" class=" search-1 w3-input w3-text-blue w3-round-large "
+                id="id_query">
+        </form>
+
+    </nav>
+    <aside class="w3-hide-small w3-bar-block w3-padding"
+        style="background-color: rgb(7, 7, 47);color:white;width: 30%;position: fixed;top: 10%;overflow: scroll;">
+        <h3>Latest Posts</h3>
+        {% show_latest_posts 10 %}
+    </aside>
+
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <style>
+        .container {
+            width: 70%;
+            left: 30%;
+            position: absolute;
+            top: 100px;
+        }
+        a{
+            text-decoration: none;
+        }
+        @media screen and (max-width:600px) {
+            .container {
+                width: 100%;
+                left: 0%;
+            }
+            .search-1{
+                width: 90px;
+            }
+        }
+    </style>
+</body>
+
+</html>
